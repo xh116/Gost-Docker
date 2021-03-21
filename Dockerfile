@@ -4,8 +4,10 @@ ENV TZ=Asia/Shanghai
 
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
+ENV GO111MODULE=on
+
+
 RUN apk add --no-cache musl-dev git gcc
-    && GO111MODULE=on
     && git clone https://github.com/ginuerzh/gost $GOPATH/src/github.com/ginuerzh/gost \
     && cd $GOPATH/src/github.com/ginuerzh/gost/cmd/gost \
     && go build
