@@ -16,13 +16,7 @@ ARG TARGETPLATFORM
 RUN apk add --no-cache musl-dev git gcc
 RUN git clone https://github.com/ginuerzh/gost.git
 
-ADD . /src
-
-WORKDIR /src
-
-ENV GO111MODULE=on
-
-RUN cd cmd/gost && go env && go build -v
+RUN cd cmd/gost && go build
 
 FROM alpine:latest
 
