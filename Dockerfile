@@ -1,17 +1,27 @@
-FROM golang:1-alpine as builder
+FROM --platform=$BUILDPLATFORM golang:1-alpine as builder
+
 
 ENV TZ=Asia/Shanghai
 
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
-ENV GO111MODULE=on
+# Convert TARGETPLATFORM to GOARCH format
+# https://github.com/tonistiigi/xx
+COPY --from=tonistiigi/xx:golang / /
 
+
+
+ARG TARGETPLATFORM
 
 RUN apk add --no-cache musl-dev git gcc
-    && git clone https://github.com/ginuerzh/gost.git
-    && cd /gost/cmd/gost \
-    && go build
-    && apk del .build-dependencies \
+
+ADD . /src
+
+WORKDIR /src
+
+ENV GO111MODULE=on
+
+RUN cd cmd/gost && go env && go build -v
 
 FROM alpine:latest
 
