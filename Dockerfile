@@ -8,11 +8,10 @@ ENV GO111MODULE=on
 
 
 RUN apk add --no-cache musl-dev git gcc
-    && git clone --depth 1 https://github.com/ginuerzh/gost.git
-    && cd /src/github.com/ginuerzh/gost/cmd/gost \
+    && git clone https://github.com/ginuerzh/gost.git
+    && cd /gost/cmd/gost \
     && go build
     && apk del .build-dependencies \
-    && rm -rf /tmp
 
 FROM alpine:latest
 
