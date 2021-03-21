@@ -16,7 +16,7 @@ ARG TARGETPLATFORM
 RUN apk add --no-cache musl-dev git gcc
 RUN git clone https://github.com/ginuerzh/gost.git
 
-RUN cd cmd/gost && go build
+RUN cd /gost-master/cmd/gost && go build
 
 FROM alpine:latest
 
