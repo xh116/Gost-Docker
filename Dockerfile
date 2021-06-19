@@ -6,7 +6,8 @@ COPY --from=tonistiigi/xx:golang / /
 
 ARG TARGETPLATFORM
 
-RUN apk add --no-cache musl-dev git gcc
+RUN apk add --no-cache musl-dev git gcc \
+    git clone https://github.com/ginuerzh/gost
 
 ADD . /src
 
