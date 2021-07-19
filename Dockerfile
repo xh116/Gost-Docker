@@ -23,8 +23,13 @@ RUN set -e \
     && ln -sf /usr/share/zoneinfo/${TZ} /etc/localtime \
     && echo ${TZ} > /etc/timezone \
     && rm -rf /var/cache/apk/*
+    && ls -la gost
+    
+    
 
-WORKDIR /bin/
+WORKDIR /bin/ 
+
+RUN ls
 
 COPY --from=builder  gost .
 
