@@ -7,7 +7,7 @@ FROM golang:1.16-alpine3.14 AS builder
 RUN set -e \
     && apk upgrade \
     && apk add --no-cache musl-dev git gcc \
-    && git clone https://github.com/ginuerzh/gost.git
+    && git clone https://github.com/ginuerzh/gost.git \
     && cd cmd/gost && go env && go build -v
 
 FROM alpine3.14
