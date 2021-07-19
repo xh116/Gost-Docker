@@ -1,6 +1,5 @@
-# This is a basic workflow to help you get started with Actions
 
-name: Gost Build
+name: gost build
 
 #on:
 #  push:
@@ -8,13 +7,13 @@ name: Gost Build
 #  pull_request:
 #    branches: [ main ]
 on:
+  repository_dispatch:
   workflow_dispatch:
     inputs:
-      name:
-        description: 'Manual Trigger'
+      ssh:
+        description: 'SSH connection to Actions'
         required: false
-        default: 'Build'
-        
+        default: 'false'
 env:
  TZ: Asia/Shanghai
 
