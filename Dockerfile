@@ -22,7 +22,7 @@ FROM alpine3.14
 
 WORKDIR /bin/
 
-COPY --from=builder /src/cmd/gost/gost 
+COPY --from=builder /src/cmd/gost/gost .
 
 ENTRYPOINT ["/bin/gost"]
 CMD ["-C", "gost.json"]
