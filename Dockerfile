@@ -8,15 +8,7 @@ RUN set -e \
     && apk upgrade \
     && apk add --no-cache musl-dev git gcc \
     && git clone https://github.com/ginuerzh/gost.git
-
-
-ADD . /src
-
-WORKDIR /src
-
-ENV GO111MODULE=on
-
-RUN cd cmd/gost && go env && go build -v
+    && cd cmd/gost && go env && go build -v
 
 FROM alpine3.14
 
