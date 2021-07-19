@@ -32,7 +32,7 @@ WORKDIR /bin/
 
 RUN ls
 
-COPY --from=builder  gost .
+COPY --from=builder  /go/gost/cmd/gost/gost .
 
 
 ENTRYPOINT ["/bin/gost"]
