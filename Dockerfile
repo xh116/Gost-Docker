@@ -14,12 +14,6 @@ FROM alpine:latest
 
 ENV TZ Asia/Shanghai
 
-RUN set -e \
-    && apk upgrade \
-    && apk add bash tzdata mailcap \
-    && ln -sf /usr/share/zoneinfo/${TZ} /etc/localtime \
-    && echo ${TZ} > /etc/timezone \
-    && rm -rf /var/cache/apk/*
 
 WORKDIR /bin/
 
