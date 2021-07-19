@@ -10,6 +10,7 @@ RUN set -e \
     && git clone https://github.com/ginuerzh/gost.git \
     && cd gost/cmd/gost && go env && go build -v \
     && ls \
+    && pwd \    
     && ls -la gost
 
 FROM alpine:latest
