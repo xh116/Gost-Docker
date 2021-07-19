@@ -10,7 +10,7 @@ RUN set -e \
     && git clone https://github.com/ginuerzh/gost.git \
     && cd gost/cmd/gost && go env && go build -v
 
-FROM alpine3.14 AS dist
+FROM alpine:latest AS dist
 
 ENV TZ Asia/Shanghai
 
