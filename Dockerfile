@@ -14,10 +14,18 @@ FROM alpine:latest
 
 ENV TZ Asia/Shanghai
 
+RUN [ ! -e /etc/nsswitch.conf ] && echo 'hosts: files dns' > /etc/nsswitch.conf
+
+RUN set -e \
+    && apk upgrade \
+    && apk add bash tzdata mailcap \
+    && ln -sf /usr/share/zoneinfo/${TZ} /etc/localtime \
+    && echo ${TZ} > /etc/timezone \
+    && rm -rf /var/cache/apk/*
 
 WORKDIR /bin/
 
-COPY --from=builder /cmd/gost/gost ./
+COPY --from=builder gost/cmd/gost/gost /
 
 
 ENTRYPOINT ["/bin/gost"]
