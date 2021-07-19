@@ -8,7 +8,8 @@ RUN set -e \
     && apk upgrade \
     && apk add --no-cache musl-dev git gcc \
     && git clone https://github.com/ginuerzh/gost.git \
-    && cd gost/cmd/gost && go env && go build -v
+    && cd gost/cmd/gost && go env && go build -v \
+    && ls
 
 FROM alpine:latest
 
