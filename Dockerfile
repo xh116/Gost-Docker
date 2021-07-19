@@ -22,7 +22,7 @@ RUN set -e \
     && apk add bash tzdata mailcap \
     && ln -sf /usr/share/zoneinfo/${TZ} /etc/localtime \
     && echo ${TZ} > /etc/timezone \
-    && rm -rf /var/cache/apk/*
+    && rm -rf /var/cache/apk/* \
     && ls -la gost
     
     
