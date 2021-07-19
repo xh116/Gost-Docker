@@ -1,13 +1,14 @@
-FROM --platform=linux/amd64 golang:1-alpine as builder
+FROM golang:1.16-alpine3.14 AS builder
 
 # Convert TARGETPLATFORM to GOARCH format
 # https://github.com/tonistiigi/xx
-COPY --from=tonistiigi/xx:golang / /
 
-ARG TARGETPLATFORM
 
-RUN apk add --no-cache musl-dev git gcc \
-    git clone https://github.com/ginuerzh/gost
+RUN set -e \
+    && apk upgrade \
+    && apk add --no-cache musl-dev git gcc \
+    && git clone https://github.com/ginuerzh/gost.git
+
 
 ADD . /src
 
@@ -17,11 +18,11 @@ ENV GO111MODULE=on
 
 RUN cd cmd/gost && go env && go build -v
 
-FROM alpine:latest
+FROM alpine3.14
 
 WORKDIR /bin/
 
-COPY --from=builder /src/cmd/gost/gost .
+COPY --from=builder /src/cmd/gost/gost 
 
 ENTRYPOINT ["/bin/gost"]
 CMD ["-C", "gost.json"]
