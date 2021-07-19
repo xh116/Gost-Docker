@@ -23,7 +23,7 @@ RUN set -e \
 
 WORKDIR /bin/
 
-COPY --from=builder /src/cmd/gost/gost .
+COPY --from=builder /cmd/gost/gost .
 
 ENTRYPOINT ["/bin/gost"]
 CMD ["-C", "gost.json"]
