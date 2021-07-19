@@ -25,7 +25,7 @@ RUN set -e \
 
 WORKDIR /bin/
 
-COPY --from=builder gost/cmd/gost/gost /
+COPY --from=builder /cmd/gost/gost .
 
 
 ENTRYPOINT ["/bin/gost"]
